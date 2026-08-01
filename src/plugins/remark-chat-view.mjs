@@ -14,6 +14,8 @@ const AVATARS = {
 };
 
 export function remarkChatView() {
+  const basePath = process.env.NODE_ENV === 'production' ? '/manga-dialogue-blog' : '';
+
   return (tree) => {
     visit(tree, 'code', (node, index, parent) => {
       if (node.lang !== 'chat') return;
@@ -39,12 +41,10 @@ export function remarkChatView() {
         };
 
         if (parts.length === 4) {
-          // {{Name|emotion|text|time}}
           emotion = charConfig.validEmotions.includes(parts[1]) ? parts[1] : charConfig.defaultEmotion;
           text = parts[2];
           time = parts[3];
         } else if (parts.length === 3) {
-          // Check if parts[1] is emotion or text
           if (charConfig.validEmotions.includes(parts[1])) {
             emotion = parts[1];
             text = parts[2];
@@ -54,13 +54,12 @@ export function remarkChatView() {
             time = parts[2];
           }
         } else if (parts.length === 2) {
-          // {{Name|text}}
           emotion = charConfig.defaultEmotion;
           text = parts[1];
         }
 
         const isLeft = name === 'タカシ';
-        const avatarUrl = `${charConfig.base}_${emotion}.svg`;
+        const avatarUrl = `${basePath}${charConfig.base}_${emotion}.svg`;
 
         htmlContent += `
           <div class="chat-message ${isLeft ? 'left' : 'right'}">
