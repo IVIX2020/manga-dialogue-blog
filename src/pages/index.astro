@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+  const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+  return dateB - dateA;
+});
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout title="ホーム">
+  <section class="hero">
+    <div class="hero-badge">💬 マンガ対話型解説</div>
+    <h1 class="hero-title">難しい話も、吹き出しでたのしく。</h1>
+    <p class="hero-description">
+      Zettelkastenの思考ノートを「タカシ」と「センセイ」の掛け合いマンガ風吹き出しでわかりやすく解説するブログサイトです。
+    </p>
+  </section>
+
+  <section class="posts-section">
+    <h2 class="section-title">最新の記事</h2>
+    <div class="posts-grid">
+      {sortedPosts.map((post) => (
+        <article class="post-card">
+          <a href={`${baseUrl}/blog/${post.slug}`} class="card-link">
+            <div class="card-content">
+              {post.data.tags && (
+                <div class="card-tags">
+                  {post.data.tags.map((tag) => (
+                    <span class="tag-badge">#{tag}</span>
+                  ))}
+                </div>
+              )}
+              <h3 class="card-title">{post.data.title}</h3>
+              {post.data.description && (
+                <p class="card-desc">{post.data.description}</p>
+              )}
+              {post.data.date && (
+                <span class="card-date">
+                  {new Date(post.data.date).toLocaleDateString('ja-JP')}
+                </span>
+              )}
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 3rem 1rem 4rem;
+    background: linear-gradient(135deg, #eff6ff 0%, #f3e8ff 100%);
+    border-radius: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.1);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    background: #4f46e5;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .hero-description {
+    font-size: 1.05rem;
+    color: #475569;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    transition: all 0.25 ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -5px rgba(99, 102, 241, 0.15);
+    border-color: #a855f7;
+  }
+
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 1.5rem;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tag-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6366f1;
+    background: #e0e7ff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.5rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-date {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+</style>

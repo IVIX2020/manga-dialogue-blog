@@ -1,0 +1,269 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = '漫画の吹き出し風・対話型解説ブログ' } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}/favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;800&family=Outfit:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title} | マンガ対話解説ラボ</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href={`${baseUrl}/`} class="site-logo">
+          <span class="logo-icon">💬</span>
+          <span class="logo-text">マンガ対話解説ラボ</span>
+        </a>
+        <nav class="site-nav">
+          <a href={`${baseUrl}/`}>ホーム</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 マンガ対話解説ラボ - Powered by Astro & Obsidian</p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary-color: #4f46e5;
+    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --card-bg: #ffffff;
+    --takashi-bubble: #e0f2fe;
+    --takashi-border: #38bdf8;
+    --sensei-bubble: #f3e8ff;
+    --sensei-border: #c084fc;
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  .site-header {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid rgba(168, 85, 247, 0.3);
+  }
+
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .site-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    transition: transform 0.2s ease;
+  }
+
+  .site-logo:hover {
+    transform: scale(1.03);
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .site-nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .site-nav a:hover {
+    color: #a855f7;
+  }
+
+  /* Main */
+  .main-content {
+    flex: 1;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  /* Footer */
+  .site-footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: #0f172a;
+    color: #64748b;
+    font-size: 0.875rem;
+    margin-top: 4rem;
+  }
+
+  /* =========================================
+     Chat View (Manga Dialogue Bubble Styles)
+     ========================================= */
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid #e2e8f0;
+  }
+
+  .chat-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 85%;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .chat-message.left {
+    align-self: flex-start;
+  }
+
+  .chat-message.right {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .chat-avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+  }
+
+  .chat-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.15);
+    background: #fff;
+    transition: transform 0.2s ease;
+  }
+
+  .chat-message:hover .chat-avatar {
+    transform: scale(1.1) rotate(-3deg);
+  }
+
+  .chat-name {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #475569;
+    margin-top: 0.25rem;
+  }
+
+  .chat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .chat-message.right .chat-content {
+    align-items: flex-end;
+  }
+
+  .chat-bubble {
+    position: relative;
+    padding: 0.875rem 1.25rem;
+    border-radius: 1.25rem;
+    font-size: 0.975rem;
+    line-height: 1.6;
+    color: #1e293b;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+  }
+
+  /* Left (Takashi) Bubble */
+  .chat-message.left .chat-bubble {
+    background-color: var(--takashi-bubble);
+    border: 2px solid var(--takashi-border);
+    border-top-left-radius: 0.2rem;
+  }
+
+  /* Right (Sensei) Bubble */
+  .chat-message.right .chat-bubble {
+    background-color: var(--sensei-bubble);
+    border: 2px solid var(--sensei-border);
+    border-top-right-radius: 0.2rem;
+  }
+
+  .chat-time {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    padding: 0 0.25rem;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .chat-message {
+      max-width: 95%;
+    }
+    .chat-container {
+      padding: 1rem;
+    }
+  }
+</style>
