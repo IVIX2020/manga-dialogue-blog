@@ -14,15 +14,15 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <Layout title="ホーム">
   <section class="hero">
-    <div class="hero-badge">💬 マンガ対話型解説</div>
-    <h1 class="hero-title">難しい話も、吹き出しでたのしく。</h1>
+    <div class="hero-badge">対話型解説</div>
+    <h1 class="hero-title">難しいテーマも、対話でシンプルに。</h1>
     <p class="hero-description">
-      Zettelkastenの思考ノートを「タカシ」と「センセイ」の掛け合いマンガ風吹き出しでわかりやすく解説するブログサイトです。
+      Zettelkastenの思考ノートを「タカシ」と「センセイ」の2人の対話を通じて、テンポよく紐解くミニマルな解説ブログです。
     </p>
   </section>
 
   <section class="posts-section">
-    <h2 class="section-title">最新の記事</h2>
+    <h2 class="section-title">記事一覧</h2>
     <div class="posts-grid">
       {sortedPosts.map((post) => (
         <article class="post-card">
@@ -55,106 +55,106 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 <style>
   .hero {
     text-align: center;
-    padding: 3rem 1rem 4rem;
-    background: linear-gradient(135deg, #eff6ff 0%, #f3e8ff 100%);
-    border-radius: 2rem;
+    padding: 3rem 1.5rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
     margin-bottom: 3rem;
-    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.1);
   }
 
   .hero-badge {
     display: inline-block;
-    padding: 0.35rem 1rem;
-    background: #4f46e5;
-    color: #ffffff;
-    font-size: 0.85rem;
-    font-weight: 700;
+    padding: 0.25rem 0.85rem;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 0.8rem;
+    font-weight: 600;
     border-radius: 9999px;
     margin-bottom: 1rem;
+    border: 1px solid #cbd5e1;
   }
 
   .hero-title {
-    font-size: 2.25rem;
-    font-weight: 800;
+    font-size: 1.85rem;
+    font-weight: 700;
     color: #0f172a;
-    line-height: 1.3;
-    margin-bottom: 1rem;
+    line-height: 1.4;
+    margin-bottom: 0.85rem;
   }
 
   .hero-description {
-    font-size: 1.05rem;
-    color: #475569;
-    max-width: 600px;
+    font-size: 0.975rem;
+    color: #64748b;
+    max-width: 580px;
     margin: 0 auto;
+    line-height: 1.8;
   }
 
   .section-title {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: 1.25rem;
+    font-weight: 700;
     color: #0f172a;
     margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
   }
 
   .posts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
   }
 
   .post-card {
     background: #ffffff;
-    border-radius: 1.25rem;
+    border-radius: 0.85rem;
     border: 1px solid #e2e8f0;
     overflow: hidden;
-    transition: all 0.25 ease;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
   }
 
   .post-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 20px -5px rgba(99, 102, 241, 0.15);
-    border-color: #a855f7;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.06);
+    border-color: #cbd5e1;
   }
 
   .card-link {
     text-decoration: none;
     color: inherit;
     display: block;
-    padding: 1.5rem;
+    padding: 1.35rem;
   }
 
   .card-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.65rem;
   }
 
   .tag-badge {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #6366f1;
-    background: #e0e7ff;
-    padding: 0.2rem 0.6rem;
-    border-radius: 0.5rem;
+    font-size: 0.725rem;
+    font-weight: 500;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.35rem;
   }
 
   .card-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #0f172a;
-    line-height: 1.4;
+    line-height: 1.5;
     margin-bottom: 0.5rem;
   }
 
   .card-desc {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     color: #64748b;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    line-height: 1.65;
+    margin-bottom: 0.85rem;
 
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -163,8 +163,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .card-date {
-    font-size: 0.8rem;
+    font-size: 0.775rem;
     color: #94a3b8;
-    font-weight: 600;
+    font-weight: 500;
   }
 </style>
