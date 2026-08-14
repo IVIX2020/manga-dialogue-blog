@@ -155,6 +155,27 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"努力を誇る人ほど他人を見下してしまう理由.md": {
+	id: "努力を誇る人ほど他人を見下してしまう理由.md";
+  slug: "努力を誇る人ほど他人を見下してしまう理由";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"最上の戦略は競争を避けることである.md": {
+	id: "最上の戦略は競争を避けることである.md";
+  slug: "最上の戦略は競争を避けることである";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"贈り物はすぐ返してはいけない.md": {
+	id: "贈り物はすぐ返してはいけない.md";
+  slug: "贈り物はすぐ返してはいけない";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 };
 
 	};
