@@ -5,11 +5,26 @@ const AVATARS = {
     base: '/avatars/takashi',
     defaultEmotion: 'normal',
     validEmotions: ['normal', 'surprise'],
+    side: 'left',
   },
   センセイ: {
     base: '/avatars/sensei',
     defaultEmotion: 'normal',
     validEmotions: ['normal', 'smile'],
+    side: 'right',
+  },
+  // 夜の観測室（パラレル枠）
+  ゼタ: {
+    base: '/avatars/zeta',
+    defaultEmotion: 'normal',
+    validEmotions: ['normal', 'smile', 'surprise', 'thinking', 'confused', 'angry'],
+    side: 'left',
+  },
+  ラム: {
+    base: '/avatars/ramu',
+    defaultEmotion: 'normal',
+    validEmotions: ['normal', 'smile', 'surprise', 'thinking', 'confused', 'angry'],
+    side: 'right',
   },
 };
 
@@ -35,9 +50,10 @@ export function remarkChatView() {
         let time = '';
 
         const charConfig = AVATARS[name] || {
-          base: '/avatars/default',
+          base: '/avatars/takashi',
           defaultEmotion: 'normal',
           validEmotions: ['normal'],
+          side: 'left',
         };
 
         if (parts.length === 4) {
@@ -58,7 +74,7 @@ export function remarkChatView() {
           text = parts[1];
         }
 
-        const isLeft = name === 'タカシ';
+        const isLeft = (charConfig.side || 'right') === 'left';
         const avatarUrl = `${basePath}${charConfig.base}_${emotion}.svg`;
 
         htmlContent += `

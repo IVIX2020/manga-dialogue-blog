@@ -155,6 +155,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"なぜ居酒屋に日本茶がないのか.md": {
+	id: "なぜ居酒屋に日本茶がないのか.md";
+  slug: "なぜ居酒屋に日本茶がないのか";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "努力を誇る人ほど他人を見下してしまう理由.md": {
 	id: "努力を誇る人ほど他人を見下してしまう理由.md";
   slug: "努力を誇る人ほど他人を見下してしまう理由";
@@ -165,6 +172,20 @@ declare module 'astro:content' {
 "最上の戦略は競争を避けることである.md": {
 	id: "最上の戦略は競争を避けることである.md";
   slug: "最上の戦略は競争を避けることである";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"草と牛の1000万年戦争.md": {
+	id: "草と牛の1000万年戦争.md";
+  slug: "草と牛の1000万年戦争";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"誰も叱らへん街の話.md": {
+	id: "誰も叱らへん街の話.md";
+  slug: "誰も叱らへん街の話";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
