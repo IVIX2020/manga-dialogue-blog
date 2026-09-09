@@ -162,6 +162,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"なぜ締め切り直前まで本気が出ないのか.md": {
+	id: "なぜ締め切り直前まで本気が出ないのか.md";
+  slug: "なぜ締め切り直前まで本気が出ないのか";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "努力を誇る人ほど他人を見下してしまう理由.md": {
 	id: "努力を誇る人ほど他人を見下してしまう理由.md";
   slug: "努力を誇る人ほど他人を見下してしまう理由";
