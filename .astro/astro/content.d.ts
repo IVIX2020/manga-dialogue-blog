@@ -155,6 +155,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"なぜ人は自分を怒らせるニュースを見てしまうのか.md": {
+	id: "なぜ人は自分を怒らせるニュースを見てしまうのか.md";
+  slug: "なぜ人は自分を怒らせるニュースを見てしまうのか";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "なぜ居酒屋に日本茶がないのか.md": {
 	id: "なぜ居酒屋に日本茶がないのか.md";
   slug: "なぜ居酒屋に日本茶がないのか";
