@@ -183,6 +183,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"島々の海の謎を解こう.md": {
+	id: "島々の海の謎を解こう.md";
+  slug: "島々の海の謎を解こう";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "最上の戦略は競争を避けることである.md": {
 	id: "最上の戦略は競争を避けることである.md";
   slug: "最上の戦略は競争を避けることである";
